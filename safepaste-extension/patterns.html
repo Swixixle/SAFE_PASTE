@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SafePaste — Pattern library</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body.patterns-page {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 24px 20px 48px;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #1a1a1a;
+        background: #fafafa;
+      }
+      .patterns-page h1 {
+        font-size: 22px;
+        margin: 0 0 8px;
+      }
+      .patterns-page .lead {
+        color: #5c5c5c;
+        margin: 0 0 24px;
+      }
+      .patterns-page section {
+        margin-bottom: 28px;
+      }
+      .patterns-page h2 {
+        font-size: 15px;
+        margin: 0 0 10px;
+        color: #0f766e;
+      }
+      .patterns-page ul {
+        margin: 0;
+        padding-left: 1.2rem;
+      }
+      .patterns-page li {
+        margin-bottom: 6px;
+      }
+      .patterns-page code {
+        font-size: 12px;
+        background: #eee;
+        padding: 1px 5px;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body class="patterns-page">
+    <h1>SafePaste pattern library</h1>
+    <p class="lead">
+      v1 rules run locally in your browser. No network calls. Placeholders and obvious documentation
+      tokens are skipped when detection is uncertain.
+    </p>
+
+    <section>
+      <h2>Tier 1 — high confidence</h2>
+      <ul>
+        <li>Database URLs (<code>postgresql://</code>, <code>mysql://</code>, <code>mongodb://</code>, <code>mongodb+srv://</code>, <code>redis://</code>) — password segment only</li>
+        <li>Environment assignments where the key name suggests a secret (<code>SECRET</code>, <code>TOKEN</code>, <code>API_KEY</code>, <code>PASSWORD</code>, <code>DATABASE_URL</code>, <code>PRIVATE_KEY</code>, <code>ACCESS_KEY</code>, <code>AUTH</code>, …)</li>
+        <li><code>Authorization: Bearer …</code> — opaque tokens and JWTs</li>
+        <li>JWT-shaped strings (three Base64URL segments)</li>
+        <li>PEM private key blocks</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Tier 2 — known formats</h2>
+      <ul>
+        <li>Anthropic API keys (<code>sk-ant-api##-…</code>) — public prefix preserved</li>
+        <li>OpenAI API keys (<code>sk-…</code>, excluding Anthropic) — prefix preserved where matched</li>
+        <li>GitHub tokens (<code>ghp_</code>, <code>gho_</code>, <code>ghs_</code>, <code>ghu_</code>)</li>
+        <li>AWS access key IDs (<code>AKIA…</code>, 20 characters)</li>
+        <li>Stripe secret keys (<code>sk_live_</code>, <code>sk_test_</code>)</li>
+        <li>Generic long high-entropy values next to labels like <code>api_key</code>, <code>client_secret</code>, …</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Replacement tokens</h2>
+      <ul>
+        <li><code>[REDACTED]</code> — passwords, env values, opaque bearer tokens, vendor key tails</li>
+        <li><code>[REDACTED_JWT]</code> — JWT-shaped material</li>
+        <li><code>[REDACTED_KEY]</code> — PEM private key material</li>
+      </ul>
+    </section>
+  </body>
+</html>

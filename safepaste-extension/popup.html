@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SafePaste</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="popup">
+    <header class="popup__header">
+      <h1 class="popup__title">SafePaste</h1>
+      <p class="popup__subtitle">Redacts secrets on paste</p>
+    </header>
+
+    <label class="toggle">
+      <input type="checkbox" id="enabled" checked />
+      <span class="toggle__ui" aria-hidden="true"></span>
+      <span class="toggle__label" id="toggleLabel">On</span>
+    </label>
+
+    <section class="stats" aria-live="polite">
+      <p class="stats__line" id="lastLine">Last: —</p>
+      <p class="stats__line stats__line--muted" id="todayLine">Today: 0 credentials redacted</p>
+    </section>
+
+    <p class="popup__link">
+      <a href="patterns.html" target="_blank" rel="noopener noreferrer">View pattern library</a>
+    </p>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
