@@ -1,5 +1,9 @@
 {
   "name": "safe-paste",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "test": "node tests/run-fixtures.mjs",
+    "clipboard": "node terminal/sanitize-clipboard.mjs"
+  }
 }
